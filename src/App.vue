@@ -1,23 +1,21 @@
-<template>
-<div class="container mx-auto px-4 py-2">
-  <Header />
+<template >
 
-  <div class="h-full">
+<div class="container h-full mx-auto ">
+  
 
-  </div>
-
+<Camera class="h-full" />
 </div>
-
 </template>
 
 <script>
-import Header from './components/Header.vue'
+import Camera from './components/Camera.vue'
+import 'material-icons/iconfont/material-icons.css';
 
 
 export default {
   name: 'App',
     components: {
-      Header
+      Camera
   }
 }
 </script>
