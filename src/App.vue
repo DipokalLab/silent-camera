@@ -1,6 +1,6 @@
 <template >
 
-<div class="container h-full mx-auto ">
+<div class="container-fluid h-full mx-auto overflow-hidden bg-black">
   
 
 <Camera class="h-full" />
@@ -9,6 +9,7 @@
 
 <script>
 import Camera from './components/Camera.vue'
+
 import 'material-icons/iconfont/material-icons.css';
 
 
