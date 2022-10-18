@@ -1,21 +1,36 @@
 
 <template>
-  <header class=" text-center">
+  <header class="text-center">
     <div class="relative text-gray-800 h-full">
         <video ref="camera" class="absolute bg-black h-full" :width="1080" :height="1920" autoplay playsinline muted></video>
 
-        <div class="block fixed inset-x-0 bottom-0 z-10 pb-10">
-            <button type="button" @click="takePicture" class="text-white bg-slate-700 hover:bg-slate-800 font-medium rounded-md text-sm px-4 py-4 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none dark:focus:ring-blue-800" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                <span class="material-icons-outlined w-8 h-8 text-2xl">
-                photo_camera
-                </span>
-            </button>
+        <div class="block fixed inset-x-0 bottom-0 z-10 pb-10 mx-3">
+            <div class="flex items-center">
+                <div class="flex-none w-14 h-14 ">
+                    
+                </div>
+                <div class="grow ">
+                    <button type="button" @click="takePicture" class="text-white bg-slate-700 hover:bg-slate-800 font-medium rounded-md text-sm px-4 py-4 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none dark:focus:ring-blue-800" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <span class="material-icons-outlined w-8 h-8 text-2xl">
+                        photo_camera
+                        </span>
+                    </button>
+                </div>
+                <div class="flex-none w-14 h-14 ">
+                    <button type="button" @click="toggleCamera" class="text-white  bg-slate-800 hover:bg-slate-900 font-medium rounded-full text-sm px-3 py-3 dark:bg-slate-800 dark:hover:bg-slate-900 focus:outline-none dark:focus:ring-blue-800" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <span class="material-icons-outlined w-8 h-8 text-2xl">
+                        autorenew
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+
+ 
         </div>
 
 
-  <div
-    v-if="isModalVisible"
-    class="absolute shadow-lg w-full h-full flex bg-black bg-opacity-70 justify-center align-middle items-center ">
+  <div v-if="isModalVisible" class="absolute shadow-lg w-full h-full flex bg-black bg-opacity-70 justify-center align-middle items-center ">
       <div class="w-2/3 p-4 bg-white rounded-md relative">
         <div class="relative w-full">
             <div class="flex text-center items-center justify-center pb-3">
@@ -54,14 +69,17 @@
                 videoStream: undefined,
                 videoConstraints: {
                     audio: false,
-                    video: true
+                    video: {
+                        facingMode: "environment"
+                    }
+                    
                 },
             }
         },
     
         methods: {
             onWindowLoad() {
-                this.toggleCamera()
+                this.openCamera()
             },
             takePicture() {
                 this.isModalOpen = true
@@ -96,6 +114,10 @@
                 });
             },
             toggleCamera() {
+                this.videoConstraints.video.facingMode = this.videoConstraints.video.facingMode == "user" ? "environment" : "user"
+                this.loadCamera()
+            },
+            openCamera() {
                 if (!this.isCameraOpen) {
                     this.loadCamera()
                 }
