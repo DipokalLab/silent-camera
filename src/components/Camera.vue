@@ -4,12 +4,12 @@
     <div class="relative text-gray-800 h-full">
         <video ref="camera" class="absolute bg-black h-full" :width="1080" :height="1920" autoplay playsinline muted></video>
 
-        <div class="block fixed inset-x-0 bottom-0 z-10 pb-10 mx-3">
+        <div class="block fixed inset-x-0 bottom-0 pb-10 mx-3">
             <div class="flex items-center">
                 <div class="flex-none w-14 h-14 ">
                     
                 </div>
-                <div class="grow ">
+                <div class="grow z-20">
                     <button type="button" @click="takePicture" class="text-white bg-slate-700 hover:bg-slate-800 font-medium rounded-md text-sm px-4 py-4 dark:bg-slate-600 dark:hover:bg-slate-700 focus:outline-none dark:focus:ring-blue-800" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         <span class="material-icons-outlined w-8 h-8 text-2xl">
                         photo_camera
@@ -30,7 +30,7 @@
         </div>
 
 
-  <div v-if="isModalVisible" class="absolute shadow-lg w-full h-full flex bg-black bg-opacity-70 justify-center align-middle items-center ">
+  <div v-if="isModalVisible" class="absolute shadow-lg w-full h-full flex bg-black bg-opacity-70 justify-center align-middle items-center z-10">
       <div class="w-2/3 p-4 bg-white rounded-md relative">
         <div class="relative w-full">
             <div class="flex text-center items-center justify-center pb-3">
